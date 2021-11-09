@@ -1,27 +1,31 @@
 //1.	Найти минимальный элемент массива
-(function (array){
+function minElem(array){
     let minElem = array.length > 0 ? array[0] : 0;
     for (let elem of array) {
         if (elem < minElem) {
             minElem = elem;
         }
     }
-    return console.log(`минимальный элемент массива ${minElem}`);
-})([45,2,7,1,9,5,-44]);
+    return minElem;
+}
+
+console.log(minElem([45,2,7,1,9,5,-44]));
 
 //2.	Найти максимальный элемент массива
-(function (array){
+function maxElem(array){
     let maxElem = array.length > 0 ? array[0] : 0;
     for (let elem of array) {
         if (elem > maxElem) {
             maxElem = elem;
         }
     }
-    return console.log(`максимальный элемент массива ${maxElem}`);
-})([45,2,7,1,9,5,-44]);
+    return maxElem;
+}
+
+console.log(maxElem([45,2,7,1,9,5,-44]));
 
 //3.	Найти индекс минимального элемента массива
-(function (array){
+function minIndex(array){
     let minIndex = 0;
     let minValue = array.length > 0 ? array[0] : 0;
     for (let index = 0; index <= array.length; index++) {
@@ -30,11 +34,13 @@
 
         }
     }
-    return console.log(`индекс минимального элемента массива ${minIndex}`);
-})([45,2,7,1,9,5,-44,77]);
+    return minIndex;
+}
+
+console.log(minIndex([45,2,7,1,9,5,-44,77]));
 
 //4.	Найти индекс максимального элемента массива
-(function (array){
+function maxIndex(array){
     let maxIndex = 0;
     let maxValue = array.length > 0 ? array[0] : 0;
     for (let index = 0; index <= array.length; index++) {
@@ -43,43 +49,53 @@
 
         }
     }
-    return console.log(`индекс максимального элемента массива ${maxIndex}`);
-})([45,2,7,1,9,5,-44,77,88]);
+    return maxIndex;
+}
+
+console.log(maxIndex([45,2,7,1,9,5,-44,77,88]));
 
 //5.	Посчитать сумму элементов массива с нечетными индексами
-(function (array){
+function sumUnevenIndex(array){
     let sum = 0;
     for (let i = 0; i< array.length; i++){
         if (i%2) sum += array[i];
     }
-    return console.log(`Сумма элементов массива с нечетным индексом ${sum}`)
-})([45,2,7,1,9,5,-44,77,44,85]);
+    return sum;
+}
+
+console.log(sumUnevenIndex([45,2,7,1,9,5,-44,77,44,85]));
 
 //6.	Сделать реверс массива (массив в обратном направлении)
-(function (array){
+function reverse(array){
     let mirrorArray = [];
     for (let i = array.length - 1; i >= 0; i--){
         mirrorArray.push(array[i]);
     }
-    return console.log(`реверс массива ${mirrorArray}`);
-})([45,2,7,1,9,5,-44,77,44,85]);
+    return mirrorArray;
+}
+
+console.log(reverse([45,2,7,1,9,5,-44,77,44,85]));
 
 //7.	Посчитать количество нечетных элементов массива
-(function (array){
+function countUnevenElem (array){
     let counter = 0;
     for (let elem of array) {
         if (elem % 2) counter++;
     }
-    return console.log(`количество нечетных элементов массива ${counter}`);
-})([45,2,7,1,9,5,-44,77,44,85]);
+    return counter;
+}
+
+console.log(countUnevenElem([45,2,7,1,9,5,-44,77,44,85]));
 
 //8.	Поменять местами первую и вторую половину массива, например, для массива
 // 1 2 3 4, результат 3 4 1 2
-(function (array){
+function changeSides(array){
     const leftSide = array.splice(0,array.length/2);
     array = [...array, ...leftSide];
-    return console.log(array);
-})([45,2,7,1,9,5,-44,77,44,85]);
+    return array;
+}
+
+console.log(changeSides([45,2,7,1,9,5,-44,77,44,85]));
 
 //9.	Отсортировать массив (пузырьком (Bubble), выбором (Select), вставками (Insert))
 // Bubble
@@ -211,7 +227,4 @@
     return console.log(array, count)
 })([45,2,7,1,9,5,-44,77,44,85]);
 
-//Heap
-(function (array){
 
-})([45,2,7,1,9,5,-44,77,44,85]);

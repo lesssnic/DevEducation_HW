@@ -149,13 +149,15 @@
         let sum = 0;
         let wordsTemp = [];
         switch (true) {
+            case (arrNumbers[words[0]] && arrNumbers[words[0]].length === arrNumbers[words[1]]?.length): wordsTemp = words.splice(0, 1);
+                break;
             case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 3): wordsTemp = words.splice(0, 1);
                 break;
             case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 2): wordsTemp = words.splice(0, 2);
                 break;
-            case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 1 && arrNumbers[words[1]].length !==3 ): wordsTemp = words.splice(0, 3);
+            case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 1 && arrNumbers[words[1]]?.length !==3 ): wordsTemp = words.splice(0, 3);
                 break;
-            case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 1 && arrNumbers[words[1]].length === 3): wordsTemp = words.splice(0, 2);
+            case (arrNumbers[words[0]] && arrNumbers[words[0]].length === 1 && arrNumbers[words[1]]?.length === 3): wordsTemp = words.splice(0, 2);
                 break;
         }
         for (let i = 0; i < wordsTemp.length; i++) {
@@ -165,7 +167,7 @@
     } while (words.length > 0)
 
     return console.log(number);
-})('двадцать пять миллионов четыреста пятьдесят одна тысяча девятьсот один');
+})('пятьсот тридцать пятьсот тридцать');
 
 //6.	Для задания 3 расширить диапазон до 999 миллиардов
 (function (number){
