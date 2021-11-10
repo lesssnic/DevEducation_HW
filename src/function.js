@@ -1,16 +1,18 @@
 //1.	Получить строковое название дня недели по номеру дня.
-(function (dayNumber){
+function dayString(dayNumber){
     const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
-    return console.log(days[dayNumber]);
-})(0);
+    return days[dayNumber];
+}
+console.log(dayString(0));
 
 //2.	Найти расстояние между двумя точками в двухмерном декартовом пространстве.
-(function (x1, y1, x2, y2){
-    return console.log(Math.sqrt((x2 - x1)**2 + (y2-y1)**2).toFixed(2));
-})(4,3,11,15);
+function decart(x1, y1, x2, y2){
+    return Number(Math.sqrt((x2 - x1)**2 + (y2-y1)**2).toFixed(2));
+}
+console.log(decart(4,3,11,15));
 
 //3.	Вводим число(0-999), получаем строку с прописью числа.
-(function (number){
+function numberToString(number){
     const arrNumberWords = [
         ['','',''],
         ['один', 'десять', 'сто'],
@@ -43,11 +45,12 @@
         words.unshift(arrNumberWords[number[i]][i]);
     }
     words = words.filter(elem => elem !== '').join(' ');
-    return console.log(words);
-})(109);
+    return words;
+}
+console.log(numberToString(109));
 
 //4.	Вводим строку, которая содержит число, написанное прописью (0-999). Получить само число
-(function (words){
+function stringToNumber(words){
     const arrNumbers = {
         ноль: '0',
         один: '1',
@@ -95,11 +98,12 @@
     for (let i = 0; i < words.length;i++) {
         number += Number(arrNumbers[words[i]]);
     }
-    return console.log(number);
-})('пятьсот тридцать');
+    return number;
+}
+console.log(stringToNumber('пятьсот тридцать'));
 
 //5.	Для задания 2 расширить диапазон до 999 миллиардов
-(function (words){
+function stringToNumberExpand(words){
     const arrNumbers = {
         ноль: '0',
         один: '1',
@@ -165,12 +169,13 @@
         }
         number = sum + ' ' + number;
     } while (words.length > 0)
-
-    return console.log(number);
-})('пятьсот тридцать пятьсот тридцать');
+        number = Number(number.split(' ').join(''));
+    return number;
+}
+console.log(stringToNumberExpand('пятьсот тридцать пятьсот тридцать'));
 
 //6.	Для задания 3 расширить диапазон до 999 миллиардов
-(function (number){
+function numberToStringExpand(number){
     const arrNumberWords = [
         ['','',''],
         ['один', 'десять', 'сто'],
@@ -216,6 +221,7 @@
     }
     numberToWords(number, words, arrNumberWords);
     words = words.filter(elem => elem !== '').join(' ');
-    return console.log(words);
-})(5216794534109);
+    return words;
+}
+console.log(numberToStringExpand(5216794534109));
 
