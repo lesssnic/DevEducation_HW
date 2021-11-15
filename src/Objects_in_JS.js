@@ -67,12 +67,12 @@ console.log(getNextPalindrome(999)) // returns 1001
 
 //6. Создать структуру данных Set, используя объект, создать методы add, remove, has
 objectSet = {
-    add:function (data) {return this[data] = 0;},
+    add:function (data) {return this[data] = true},
     remove:function (data) {return this.hasOwnProperty(data)?delete this[data]:false},
     has:function (data) {return this.hasOwnProperty(data)}
 }
 
-objectSet.add('a');
+console.log(objectSet.add('a'));
 objectSet.add('b');
 objectSet.add('f');
 objectSet.add('g');
