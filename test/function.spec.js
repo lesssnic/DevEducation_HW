@@ -12,30 +12,37 @@ describe('function', () => {
         it('should return number (distance between two points)', () => {
             expect(decart(4,3,11,15)).to.equal(13.89);
             expect(decart(4,3,11,15)).not.to.equal(5);
+            expect(decart(0,0,0,0)).to.equal(0);
+            expect(decart(4,-3,-11,15)).to.equal(23.43);
         })
     })
     describe('transform number to number in words', () => {
         it('should return number in words', () => {
             expect(numberToString(22)).to.equal('двадцать два');
             expect(numberToString(3)).not.to.equal('четыре');
+            expect(numberToString(0)).to.equal('');
+            expect(numberToString(-10)).to.equal('десять');
         })
     })
     describe('transform number in words to number', () => {
         it('should return number', () => {
             expect(stringToNumber('двадцать два')).to.equal(22);
             expect(stringToNumber('двадцать два')).not.to.equal(33);
+            expect(stringToNumber('ноль')).to.equal(0);
         })
     })
     describe('transform number in words to number (expanded)', () => {
         it('should return number', () => {
             expect(stringToNumberExpand('пятьсот тридцать тысяч пятьсот тридцать')).to.equal(530530);
             expect(stringToNumberExpand('пятьсот тридцать тысяч пятьсот тридцать')).not.to.equal(5305);
+            expect(stringToNumberExpand('ноль')).to.equal(0);
         })
     })
     describe('transform number to number in words (expanded)', () => {
         it('should return number in words', () => {
             expect(numberToStringExpand(5216794534109)).to.equal('пять трлн. двести шестнадцать млрд. семьсот девяносто четыре млн. пятьсот тридцать четыре тыс. сто девять');
             expect(numberToStringExpand(5216794534109)).not.to.equal('пять');
+            expect(numberToStringExpand(0)).to.equal('');
         })
     })
 });

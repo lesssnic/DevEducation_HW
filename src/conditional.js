@@ -2,7 +2,7 @@
 function multOrSum(a, b) {
     return (!(a % 2))?a+b:a*b;
 }
-console.log(multOrSum(4, 7));
+console.log(multOrSum(-1, 7));
 
 // 2.	Определить какой четверти принадлежит точка с координатами (х,у)
 function coordinates(x, y) {

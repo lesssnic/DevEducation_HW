@@ -2,39 +2,61 @@ describe('cycle', () => {
 
     describe('count even numbers and sum their', () => {
         it('should return count and sum in array', () => {
-//            expect(minElem([45,2,7,1,9,5,-44])).to.equal(-44);
-//            expect(minElem([45,2,7,1,9,5,-44])).not.to.equal(-5);
+            expect(countEven(99)).to.eql([2450,49]);
+            expect(countEven(99)).not.to.eql([2450,55]);
+            expect(countEven(0)).to.eql([0,0]);
+            expect(countEven(-90)).to.eql([0,0]);
+            expect(countEven(190)).to.eql([2450,49]);
+        })
+    })
+
+    describe('Is it a prime number to check?', () => {
+        it('should return boolean', () => {
+            expect(simpleNumber(7)).to.equal(true);
+            expect(simpleNumber(7)).not.to.equal(false);
+            expect(simpleNumber(0)).to.equal(false);
+            expect(simpleNumber(-7)).to.equal(false);
         })
     })
 
     describe('get the root of a number with integer precision (line search)', () => {
         it('should return root of number', () => {
-//            expect(maxElem([45,2,7,1,9,5,-44])).to.equal(45);
-//            expect(maxElem([45,2,7,1,9,5,-44])).not.to.equal(-5);
+            expect(getSqrLine(361)).to.equal(19);
+            expect(getSqrLine(361)).not.to.equal(7);
+            expect(getSqrLine(0)).to.equal(0);
+            expect(getSqrLine(-361)).to.equal(0);
         })
     })
     describe('get the root of a number with integer precision (binary search)', () => {
         it('should return root of number', () => {
-//            expect(minIndex([45,2,7,1,9,5,-44])).to.equal(6);
-//            expect(minIndex([45,2,7,1,9,5,-44])).not.to.equal(2);
+            expect(getSqrLine(361)).to.equal(19);
+            expect(getSqrLine(361)).not.to.equal(7);
+            expect(getSqrLine(0)).to.equal(0);
+            expect(getSqrLine(-361)).to.equal(0);
         })
     })
     describe('get factorial of number', () => {
         it('should return factorial of number', () => {
-//            expect(maxIndex([45,2,7,1,9,5,-44,77,88])).to.equal(8);
-//            expect(maxIndex([45,2,7,1,9,5,-44,77,88])).not.to.equal(2);
+            expect(factorial(5)).to.equal(120);
+            expect(factorial(5)).not.to.equal(2);
+            expect(factorial(0)).not.to.equal(0);
+            expect(factorial(-5)).not.to.equal(0);
         })
     })
     describe('sum digits of number', () => {
         it('should return sum digits of number', () => {
-//            expect(sumUnevenIndex([45,2,7,1,9,5,-44,77,44,85])).to.equal(170);
-//            expect(sumUnevenIndex([45,2,7,1,9,5,-44,77,44,85])).not.to.equal(2);
+            expect(sumDigit(345)).to.equal(12);
+            expect(sumDigit(345)).not.to.equal(2);
+            expect(sumDigit(0)).to.equal(0);
+            expect(sumDigit(-34)).to.equal(7);
         })
     })
     describe('mirroring number', () => {
         it('should return mirrored number', () => {
-//            expect(reverse([45,2,7,1,9,5,-44,77,44,85])).to.eql([85,44,77,-44,5,9,1,7,2,45]);
-//            expect(reverse([45,2,7,1,9,5,-44,77,44,85])).not.to.eql([45,2,7,1,9,5,-44,77,88]);
+            expect(mirrorNumber(123456789)).to.equal(987654321);
+            expect(mirrorNumber(345)).not.to.equal(453);
+            expect(mirrorNumber(0)).to.equal(0);
+            expect(mirrorNumber(-789)).to.equal(-987);
         })
     })
 });

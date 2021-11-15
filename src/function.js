@@ -35,7 +35,7 @@ function numberToString(number){
         ['восемнадцать'],
         ['девятнадцать']
     ];
-    number = number.toString().split('').reverse().map(elem => Number(elem));
+    number = number.toString().split(/-|/).reverse().map(elem => Number(elem));
     let words = [];
     if (number[1] === 1) {
         number[0] = Number(number[1].toString() + number[0].toString());

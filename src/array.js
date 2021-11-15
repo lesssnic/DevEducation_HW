@@ -1,6 +1,6 @@
 //1.	Найти минимальный элемент массива
 function minElem(array){
-    let minElem = array.length > 0 ? array[0] : 0;
+    let minElem = array.length > 0 ? array[0] : null;
     for (let elem of array) {
         if (elem < minElem) {
             minElem = elem;
@@ -13,7 +13,7 @@ console.log(minElem([45,2,7,1,9,5,-44]));
 
 //2.	Найти максимальный элемент массива
 function maxElem(array){
-    let maxElem = array.length > 0 ? array[0] : 0;
+    let maxElem = array.length > 0 ? array[0] : null;
     for (let elem of array) {
         if (elem > maxElem) {
             maxElem = elem;
@@ -26,7 +26,7 @@ console.log(maxElem([45,2,7,1,9,5,-44]));
 
 //3.	Найти индекс минимального элемента массива
 function minIndex(array){
-    let minIndex = 0;
+    let minIndex = array.length > 0 ? 0 : null;
     let minValue = array.length > 0 ? array[0] : 0;
     for (let index = 0; index <= array.length; index++) {
         if (array[index] < minValue) {
@@ -41,7 +41,7 @@ console.log(minIndex([45,2,7,1,9,5,-44,77]));
 
 //4.	Найти индекс максимального элемента массива
 function maxIndex(array){
-    let maxIndex = 0;
+    let maxIndex = array.length > 0 ? 0 : null;
     let maxValue = array.length > 0 ? array[0] : 0;
     for (let index = 0; index <= array.length; index++) {
         if (array[index] > maxValue) {

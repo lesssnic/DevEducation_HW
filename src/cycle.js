@@ -2,6 +2,7 @@
 function countEven(number) {
     let sum = 0;
     let count = 0;
+    if (number > 99) number = 99;
     for (let i = 1; i <= number; i++) {
         if (!(i % 2)) {
             sum += i;
@@ -10,7 +11,7 @@ function countEven(number) {
     }
     return [sum, count];
 }
-console.log(countEven(99));
+console.log(countEven(190));
 
 //2.	Проверить простое ли число? (число называется простым, если оно делится только само на себя и на 1)
 function simpleNumber(number){
@@ -70,7 +71,7 @@ console.log(factorial(5));
 //5.	Посчитать сумму цифр заданного числа
 function sumDigit(number){
     let sum = 0;
-    const numberSplit = number.toString().split('');
+    const numberSplit = number.toString().split(/-|/);
     for (let digit of numberSplit) {
         sum += Number(digit);
     }
@@ -82,6 +83,10 @@ console.log(sumDigit(345));
 //      цифр заданного числа, например, задано число 123, вывести 321.
 function mirrorNumber(number){
     let numberRevers = '';
+    if (number < 0) {
+        number = Math.abs(number);
+        numberRevers = '-';
+    }
     number = number.toString();
     for (let i = number.length - 1; i >= 0; i--) {
         numberRevers += number[i];
