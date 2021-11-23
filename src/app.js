@@ -1,4 +1,4 @@
-//import css from "./style.css";
+
 const image = document.querySelector('.container');
 const linkedList = {
     head: {value: '1', next: 1},
@@ -31,7 +31,7 @@ function addElem (list, elem = '0') {
     if (typeof list === 'object' &&
         !Array.isArray(list) &&
         list !== null){
-        function findEnd (list) {
+    function findEnd (list) {
         let key;
         for (let elem in list) {
             if (list[elem].next === 'end') key = elem;
@@ -52,15 +52,15 @@ function addElem (list, elem = '0') {
             list['head'] = {value: elem, next: 'end'};
             list.length += 1;
         }
-        //render()
+        render()
         return true;
     }else return false;
 
 }
-function addElements (list, arr) {
+function addElements (list, arr=[]) {
     if (typeof list === 'object' &&
         !Array.isArray(list) &&
-        list !== null) {
+        list !== null && arr?.length > 0 && arr !== null) {
         arr.forEach(item => addElem(list, item));
         //render();
     }else return false;
@@ -72,30 +72,37 @@ function removeElementValue (list, value) {
         list !== null) {
         let key;
         let next;
-        let prev;
         for (let elem in list) {
-            if (value === list[elem]?.value) {
-                key = Number(elem);
-                next = list[elem]?.next;
+            if (value === list[elem].value) {
+                key = elem;
+                next = list[elem].next;
+                if (key === 'head') {
+                    list[key] = list[next];
+                    delete list[next];
+                } else if (list[key].next === 'end') {
+                    for (let prev in list) {
+                        if (list[prev].next === Number(key)) list[prev].next = 'end';
+                    }
+                    delete list[key];
+                } else {
+                    for (let prev in list) {
+                    if (list[prev].next === Number(key)) list[prev].next = next;
+                    }
+                    delete list[key];
+                }
+                list.length -= 1;
+                render();
+                return true;
             }
         }
-        if (!key) return false;
-        for (let elem in list) {
-            if (key === list[elem]?.next) {
-                prev = Number(elem);
-            }
-        }
-        delete list[key];
-        list[prev].next = next;
-        list.length -= 1;
-        //render();
-        return true;
+        render();
+        return false;
     }else return false;
 }
 function removeLastElement (list) {
     if (typeof list === 'object' &&
         !Array.isArray(list) &&
-        list !== null) {
+        list !== null && Object.keys(list).length > 0) {
         let key;
         let prev;
         for (let elem in list) {
@@ -132,15 +139,17 @@ function getLengthList (list) {
 }
 function render () {
     const arr = getListArr(linkedList, 'head');
-    return image.innerHTML = arr.map(elem => `<div class="element"><p>${elem.value}</p><p>${elem.next}</p></div>`
-    ).join('');
+    return image.innerHTML = arr.reduce((acc, elem, index) => acc += `
+    ${(index === 0)?'<div class="head">HEAD</div>':''}
+    <div class="element"><span>Value: ${elem.value}</span><span>Next: ${elem.next}</span></div><div class="arrow">===></div>
+    ${(index === arr.length - 1)?'<div class="head">null</div>':''}`
+    , '');
 }
 render();
 //console.log(addElem(linkedList));
-console.log(getValueIndex(linkedList, -2));
+//console.log(getValueIndex(linkedList, -2));
 //console.log(getIndexValue(linkedList, '99'));
 //console.log(getLengthList(linkedList));
-// console.log(removeElementValue(linkedList, '9'));
 // console.log(removeElementValue(linkedList, '9'));
 // console.log(linkedList);
 // console.log(getListArr(linkedList, 'head'));

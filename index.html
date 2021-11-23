@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Mocha Tests</title>
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet"/>
     <link rel="stylesheet" href="./src/style.css">
-    <script defer src="./src/app.js"></script>
-    <title>Linked_List</title>
 </head>
 <body>
+    <script>
+        function myFunction() {
+            document.getElementById('result').value = '5';
+        }
+    </script>
     <div class="container"></div>
+    <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/2.2.2/faker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/8.0.1/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/1.4.1/chai.js"></script>
+    <script src="./src/app.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="./test/algorithms.spec.js"></script>
+    <script>
+        mocha.run();
+    </script>
 </body>
 </html>
