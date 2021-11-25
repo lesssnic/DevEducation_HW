@@ -1,86 +1,83 @@
 import css from "./style.css";
 
+const buttonTemplate = document.querySelector('#button-template').innerHTML;
+const imgTemplate = document.querySelector('#img-template').innerHTML;
 const body = document.querySelector('body');
-const wind = document.querySelector('.container');
+const galery = document.querySelector('.container');
 const paginator = document.querySelector('.paginator');
 const pages = document.querySelector('.pages');
 const big = document.querySelector('#big>img');
 const bigButton = document.querySelector('#big');
-paginator.addEventListener('click', pageButton);
-wind.addEventListener('click', lens);
-bigButton.addEventListener('click', closeLins);
 const URL = 'https://jsonplaceholder.typicode.com/photos?_limit=100';
 const onList = 9;
+const pagesAlbom = {};
 let pageNumber = 1;
 let maxPage;
-let pagesAlbom;
+paginator.addEventListener('click', pageButton);
+galery.addEventListener('click', lens);
+bigButton.addEventListener('click', closeLins);
+render(pageNumber);
 
-function getAlbom () {
-    const albom = fetch(URL)
+function getAlbom() {
+    return fetch(URL)
     .then(data => data.json())
     .catch(err=> console.log(err));
-    return albom;
 }
-function splitAlbom (albom) {
+function splitAlbom(albom) {
     maxPage = Math.ceil(albom.length/onList);
-    const pagesAlbom = {};
-    for (let i=0;i<maxPage;i++) {
+    for (let i = 0;i < maxPage;i++) {
         pagesAlbom[i+1] = albom.slice(i*onList, (i+1)*onList);
     }
-    return pagesAlbom;
 }
-function renderPaginator (pagesAlbom) {
-    let keys = Object.keys(pagesAlbom);
-    pages.innerHTML = keys.map(elem => `<button class="menu" data="${elem}">${elem}</button>`)
-    .join('')
-    
+function renderPaginator(pagesAlbom) {
+    const keys = Object.keys(pagesAlbom);
+    pages.innerHTML = keys.map(createButton).join('');
 }
 async function render(page) {
-    if (!pagesAlbom){
+    if (!Object.keys(pagesAlbom).length){
         const photoBank = await getAlbom();
-        pagesAlbom = splitAlbom(photoBank);
+        splitAlbom(photoBank);
         renderPaginator(pagesAlbom);
-        paintButton(1);
+        paintButton(pageNumber);
     }    
-    const viewPage = pagesAlbom[page]?.map(elem => `<img src="${elem.thumbnailUrl}" alt="${elem.title}" data="${elem.url}">`)
-    .join('');
-    wind.innerHTML = viewPage;
+    galery.innerHTML = pagesAlbom[page]?.map(createImg).join('');
 }
-function lens (e) {
+function lens(e) {
     if (e.srcElement.localName !== 'img') return ;
     big.attributes.src.value = e.target.attributes.data.value;
     bigButton.classList.remove('none');
     body.classList.add('scroolhide');
     return ;
 }
-function closeLins () {
+function closeLins() {
     bigButton.classList.add('none');
     body.classList.remove('scroolhide');
 }
 function pageButton(e) {
     if (e.srcElement.localName !== 'button') return ;
     const tempPage = Number(e.target.attributes.data.value);
-    if (tempPage === -1 && pageNumber === 1) return ;
-    if (tempPage === 0 && pageNumber === maxPage) return ;
-    if (tempPage === -1 && pageNumber > 1) {
-        pageNumber -= 1;
-        paintButton(pageNumber);
-    }
-    if (tempPage === 0 && maxPage !== pageNumber) {
-        pageNumber += 1;
-        paintButton(pageNumber);}
-    if (tempPage > 0) {
-        pageNumber = tempPage;
-        paintButton(pageNumber);
-    }
+    const ifArrow = (tempPage === -1 && pageNumber === 1) || (tempPage === 0 && pageNumber === maxPage);
+    if (ifArrow) return ;
+    if (tempPage === -1) pageNumber -= 1;
+    if (tempPage === 0) pageNumber += 1;
+    if (tempPage > 0) pageNumber = tempPage;
+    paintButton(pageNumber);
     render(pageNumber);
 }
-function paintButton (pageNumber) {
+function paintButton(pageNumber) {
     const arrButton = document.querySelectorAll('.menu');
-        for (let elem of arrButton) {
-            if (Number(elem.innerHTML) === pageNumber) {
-                elem.classList.add('active');
-            } else elem.classList.remove('active');
-        }
+        arrButton.forEach(button => 
+                    (Number(button.innerHTML) === pageNumber) ?
+                    button.classList.add('active') : 
+                    button.classList.remove('active')
+        );
 }
-render(pageNumber);
+function createButton(item) {
+    return buttonTemplate.replace('{{elem}}', item)
+                         .replace('{{elem}}', item);
+}
+function createImg(item) {
+    return imgTemplate.replace('{{elem.thumbnailUrl}}', item.thumbnailUrl)
+                      .replace('{{elem.title}}', item.title)
+                      .replace('{{elem.url}}', item.url);
+}

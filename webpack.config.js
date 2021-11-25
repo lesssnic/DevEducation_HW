@@ -3,6 +3,12 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
+    watch: true,
+    watchOptions: {
+      aggregateTimeout: 200,
+      poll: 1000,
+      ignored: /node_modules/,
+    },
     module: {
         rules: [
           {
@@ -13,7 +19,6 @@ module.exports = {
       },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './src/index.html'), // 
             filename: 'index.html', 
         }),
