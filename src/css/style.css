@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: lightgray url(../img/error.gif) no-repeat center;
+    background-size: contain;
+}
+.navigation {
+    border: none;
+    opacity: 0.6;
+}
+.navigation:hover {
+    background-color: rgb(141, 103, 103);
+}
+.play {
+    background: transparent url(../img/icons/play-solid.svg) no-repeat center;
+    height: 100px;
+    width: 100px;
+}
+.stop {
+    background: transparent url(../img/icons/stop-solid.svg) no-repeat center;
+    height: 100px;
+    width: 100px;
+}
+.prev {
+    background: transparent url(../img/icons/chevron-left-solid.svg) no-repeat center;
+    height: 99%;
+    width: 100px;
+}
+.next {
+    background: transparent url(../img/icons/chevron-right-solid.svg) no-repeat center;
+    height: 99%;
+    width: 100px;
+}
