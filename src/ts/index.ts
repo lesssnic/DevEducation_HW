@@ -21,7 +21,7 @@ function getAlbom():Promise<Array<IPage>> {
         .then(data => data.json())
         .catch(err=> console.log(err));
 }
-function splitAlbom(albom):void {
+function splitAlbom(albom:Array<IPage>):void {
     maxPage = Math.ceil(albom.length/onList);
     for (let i = 0;i < maxPage;i++) {
         pagesAlbom[i+1] = albom.slice(i*onList, (i+1)*onList);
@@ -41,10 +41,11 @@ async function render(page:number):Promise<void> {
     TREE.galery.innerHTML = pagesAlbom[page]?.map(createImg).join('');
 }
 
-function pageButton(e):void {
-    console.log(e);
-    if (e.target.localName !== 'button') return ;
-    const tempPage = Number(e.target.attributes.data.value);
+function pageButton(e:MouseEvent):void {
+    const elem = e.target as HTMLImageElement;
+    const imgLink:any = elem.attributes;
+    if (elem.localName !== 'button') return ;
+    const tempPage = Number(imgLink.data.value);
     const ifArrow = (tempPage === -1 && pageNumber === 1) || (tempPage === 0 && pageNumber === maxPage);
     if (ifArrow) return ;
     if (tempPage === -1) pageNumber -= 1;
