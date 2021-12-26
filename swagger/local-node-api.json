@@ -1,0 +1,514 @@
+swagger: "2.0"
+info:
+  description: "This is a Node server."
+  version: "1.0.0"
+  title: "Swagger Node-Homework"
+host: "localhost:3001"
+basePath: "/"
+schemes:
+- "http"
+paths:
+  /get-universities:
+    get:
+      tags:
+      - "university"
+      summary: "Get universities"
+      description: ""
+      operationId: "getUniversities"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /get-university-by-id:
+    get:
+      tags:
+      - "university"
+      summary: "Get university by ID"
+      description: ""
+      operationId: "getUniversityByID"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      responses:
+        "200":
+          description: "Invalid input"
+  /create-university:
+    post:
+      tags:
+      - "university"
+      summary: "Create University"
+      description: ""
+      operationId: "create-university"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create university"
+        required: true
+        schema:
+          $ref: "#/definitions/University"
+      responses:
+        "405":
+          description: "Invalid input"
+  /get-professor-by-university-id:
+    get:
+      tags:
+      - "professor"
+      summary: "Get professor by university ID"
+      description: ""
+      operationId: "get-professor-by-university-id"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /create-professor:
+    post:
+      tags:
+      - "professor"
+      summary: "Create professor"
+      description: ""
+      operationId: "create-professor"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create professor"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "405":
+          description: "Invalid input"
+  /get-courses-by-university-id:
+    get:
+      tags:
+      - "courses"
+      summary: "Get courses by university ID"
+      description: ""
+      operationId: "get-courses-by-university-id"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /create-course:
+    post:
+      tags:
+      - "courses"
+      summary: "Create course"
+      description: ""
+      operationId: "create-course"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create course"
+        required: true
+        schema:
+          $ref: "#/definitions/Course"
+      responses:
+        "405":
+          description: "Invalid input"
+  /delete-course:
+    delete:
+      tags:
+      - "courses"
+      summary: "Delete a course"
+      description: ""
+      operationId: "deleteCourse"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "query"
+        description: "Course to delete"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Course not found"
+  /get-students-by-university-id:
+    get:
+      tags:
+      - "student"
+      summary: "Get student by university ID"
+      description: ""
+      operationId: "get-student-by-university-id"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /get-students-by-course-id:
+    get:
+      tags:
+      - "student"
+      summary: "Get students by course ID"
+      description: ""
+      operationId: "get-students-by-course-id"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /create-student:
+    post:
+      tags:
+      - "student"
+      summary: "Create student"
+      description: ""
+      operationId: "create-student"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create student"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "405":
+          description: "Invalid input"
+  /update-student:
+    put:
+      tags:
+      - "student"
+      summary: "update student"
+      description: ""
+      operationId: "update-student"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "update student"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "405":
+          description: "Invalid input"
+  /delete-student-by-id:
+    delete:
+      tags:
+      - "student"
+      summary: "delete a student"
+      description: ""
+      operationId: "deleteStudent"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "Student to delete"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Student not found"
+  /get-student-rate-by-course:
+    get:
+      tags:
+      - "rate"
+      summary: "Get student rate by course"
+      description: ""
+      operationId: "get-student-rate-by-course"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        type: "number"
+        description: "ID of university to return"
+        required: true
+        format: "int64"
+      - in: "query"
+        name: "name"
+        description: "Part of name"
+        type: "string"
+      - in: "query"
+        name: "page"
+        description: "Number of page"
+        type: "number"
+      - in: "query"
+        name: "perPage"
+        description: "Per page"
+        type: "number"
+      responses:
+        "200":
+          description: "Invalid input"
+  /insert-student-to-course:
+    post:
+      tags:
+      - "rate"
+      summary: "insert-student-to-course"
+      description: ""
+      operationId: "insert-student-to-course"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "insert-student-to-course"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonToCourse"
+      responses:
+        "405":
+          description: "Invalid input"
+  /set-mark-for-course:
+    post:
+      tags:
+      - "rate"
+      summary: "set-mark-for-course"
+      description: ""
+      operationId: "set-mark-for-course"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "set-mark-for-course"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonToCourseMark"
+      responses:
+        "405":
+          description: "Invalid input"
+  /remove-student-from-course:
+    delete:
+      tags:
+      - "rate"
+      summary: "delete student from course"
+      description: ""
+      operationId: "delete student from course"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "person_name"
+        in: "query"
+        description: "Name is an email"
+        required: true
+        type: "string"
+      - name: "course_name"
+        in: "query"
+        description: "delete student from course"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Student not found"
+         
+definitions:
+  University:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+  Person:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      age:
+        type: "number"
+      email:
+        type: "string"
+      university_id:
+        type: "number"
+  Course:
+    type: "object"
+    properties:
+      course_name:
+        type: "string"
+      university_id:
+        type: "number"
+  PersonToCourse:
+    type: "object"
+    properties:
+      course_name:
+        type: "string"
+      person_name:
+        type: "string"
+  PersonToCourseMark:
+    type: "object"
+    properties:
+      course:
+        type: "string"
+      student:
+        type: "string"
+      professor:
+        type: "string"
+      mark:
+        type: "number"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
