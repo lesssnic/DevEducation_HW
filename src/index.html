@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo List By Anton</title>
+</head>
+<body>
+<div class="lds-dual-ring"></div>
+    <div class="container todo">
+        <header>
+            <span>ToDo</span>
+        </header>
+        <div class="list">
+            <ul class="tasksList">
+                <li class="task" draggable="true">
+                    <p class="task-text">Rупить хлеб</p>
+                    <button class="removeButton"></button>
+                </li>
+                <li class="task" draggable="true">
+                    <p class="task-text">Сварить суп</p>
+                    <button class="removeButton"></button>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <div>
+                <input type="text" class="new_task_input" placeholder="type new task">
+                <button class="new_task_button"></button>
+            </div>
+        </footer>
+    </div>
+    <div class="container in-progress">
+        <header>
+            <span>In Progress</span>
+        </header>
+        <div class="list">
+            <ul class="tasksList">
+                <li class="task" draggable="true">
+                    <p class="task-text">Захватить мир</p>
+                    <button class="removeButton"></button>
+                </li>
+                <li class="task" draggable="true">
+                    <p class="task-text">Сделать проект</p>
+                    <button class="removeButton"></button>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <div>
+                <input type="text" class="new_task_input" placeholder="type new task">
+                <button class="new_task_button"></button>
+            </div>
+        </footer>
+    </div>
+    <div class="container done">
+        <header>
+            <span>Done</span>
+        </header>
+        <div class="list">
+            <ul class="tasksList">
+                <li class="task" draggable="true">
+                    <p class="task-text">Сделать домашку</p>
+                    <button class="removeButton"></button>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <div>
+                <input type="text" class="new_task_input" placeholder="type new task">
+                <button class="new_task_button"></button>
+            </div>
+        </footer>
+    </div>
+
+
+    <script type="text/template" id="template-task">
+        <li class="task" draggable="true">
+                <p class="task-text">{{task.title}}</p>
+                <button class="removeButton"></button>
+        </li>
+    </script>
+</body>
+</html>
